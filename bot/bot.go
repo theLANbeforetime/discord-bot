@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/bwmarrin/discordgo"
+	"github.com/nicklaw5/helix/v2"
 )
 
 var BotID string
@@ -26,7 +27,7 @@ func Run() {
 		return
 	}
 	BotID = user.ID
-	goBot.AddHandler(twitch.MessageHandler)
+	goBot.AddHandler(MessageHandler)
 	err = goBot.Open()
 	if err != nil {
 		return
@@ -40,8 +41,8 @@ func MessageHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 	if strings.HasPrefix(m.Content, "!") {
 		searchTerm := strings.TrimLeft(m.Content, "!")
 		client, err := helix.NewClient(&helix.Options{
-			ClientID:       "lx3ixfdgqy8bp6yihrkc9s5s328ada",
-			AppAccessToken: "5mm5ccbjc64ng6z2520fb3sp2xd1oa",
+			ClientID:       config.TwitchClientID,
+			AppAccessToken: config.TwitchAccessToken,
 		})
 		if err != nil {
 			panic(err)

@@ -7,14 +7,18 @@ import (
 )
 
 var (
-	Token  string
-	Prefix string
-	config *configStruct
+	Token             string
+	Prefix            string
+	TwitchClientID    string
+	TwitchAccessToken string
+	config            *configStruct
 )
 
 type configStruct struct {
-	Token  string `json:"token"`
-	Prefix string `json:"prefix"`
+	Token             string `json:"discordtoken"`
+	Prefix            string `json:"discordprefix"`
+	TwitchClientID    string `json:"twitchclientid"`
+	TwitchAccessToken string `json:"twitchaccesstoken"`
 }
 
 func ReadConfig() error {
@@ -30,6 +34,8 @@ func ReadConfig() error {
 	}
 	Token = config.Token
 	Prefix = config.Prefix
+	TwitchClientID = config.TwitchClientID
+	TwitchAccessToken = config.TwitchAccessToken
 
 	return nil
 }
