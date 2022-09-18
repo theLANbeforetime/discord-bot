@@ -61,7 +61,7 @@ func MessageHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 		_, _ = s.ChannelMessageSend(m.ChannelID, "Below are the users who matched for Apex Legends:\n")
 		for _, respons := range resp.Data.Channels {
 			if respons.GameName == "Apex Legends" {
-				resultFromSearch := fmt.Sprintf("Username: %+v\n Game: %+v\n Live? %+v \n https://twitch.tv/%+v\n", respons.DisplayName, respons.GameName, respons.IsLive, respons.DisplayName)
+				resultFromSearch := fmt.Sprintf("Username: %+v\n Game: %+v\n Live: %+v \n https://twitch.tv/%+v\n Link to Videos --> https://twitch.tv/%+v/videos", respons.DisplayName, respons.GameName, respons.IsLive, respons.DisplayName, respons.DisplayName)
 				_, _ = s.ChannelMessageSend(m.ChannelID, resultFromSearch)
 				_, _ = s.ChannelMessageSend(m.ChannelID, "####################################")
 			}
